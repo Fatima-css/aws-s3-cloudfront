@@ -22,6 +22,7 @@
 ### 2. S3 Errors Encountered and Resolved
 
 >> I tried to access the website and encountered a 404 Not Found error. Upon reviewing the S3 bucket configuration, I realized that static website hosting had not been enabled.
+
 ![Screenshot showing the 404 Not Found error](404-error.png)
 
 * **Error 1: 404 Not Found (Configuration Error)**
