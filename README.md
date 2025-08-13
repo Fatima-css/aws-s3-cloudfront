@@ -20,7 +20,7 @@
 * Disabled the default "Block Public Access" settings. Which is enabled by default as a security measure, would have prevented the bucket from ever becoming public.
 
 ### 2. S3 Errors Encountered and Resolved
-![Screenshot showing a 404 Not Found error](console screenshots/404-error.png)
+![Screenshot showing the 404 Not Found error](404-error.png)
 
 >> I tried to access the website and encountered a 404 Not Found error. Upon reviewing the S3 bucket configuration, I realized that static website hosting had not been enabled. 
 * **Error 1: 404 Not Found (Configuration Error)**
