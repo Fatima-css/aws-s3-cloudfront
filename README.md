@@ -27,7 +27,7 @@ I tried to access the website and encountered a 404 Not Found error. Upon review
     * **Solution:** Enabled static website hosting for the csa-static-resume bucket.
     * **Implementation Path:** AWS S3 Console → Select csa-static-resume bucket → Properties tab → Static website hosting section → Enabled hosting. Set the Index document to csa-resume.pdf. (Note: The index document name must precisely match the uploaded filename.)
 
-- After enabling static website hosting, I attempted to access the website endpoint again and encountered a 403 Access Denied error. #
+After enabling static website hosting, I attempted to access the website endpoint again and encountered a 403 Access Denied error. #
 * **Error 2: 403 Access Denied (Security Error)**
     * **Root Cause:** By default, all S3 buckets and their objects are private, regardless of the "Block Public Access" settings. Even with public access blocked off, specific permissions are required to allow public read access to the bucket's contents for website hosting. My bucket lacked the necessary "permission slip" in the form of a bucket policy to allow public read operations.
     * **Solution:** Created and applied a bucket policy to the csa-static-resume bucket granting public read access.
