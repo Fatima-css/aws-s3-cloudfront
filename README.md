@@ -32,6 +32,7 @@
 ![Screenshot of the static hosting configuration](config-static-hosting.png)
 
 >> After enabling static website hosting, I attempted to access the website endpoint again and encountered a 403 Access Denied error.
+
 ![Screenshot showing the 403 Access Denied error](403-error.png)
 
 * **Error 2: 403 Access Denied (Security Error)**
