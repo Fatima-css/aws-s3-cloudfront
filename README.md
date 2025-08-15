@@ -74,7 +74,7 @@ To improve global accessibility, enable HTTPS, and leverage caching, Amazon Clou
 * **SSL Certificate:** Utilized the default "AWS Certificate Manager (ACM) certificate" option, which provides free, automatically managed SSL certificates for CloudFront distributions. Which CloudFront provides by default for its .cloudfront.net domain.
 ![Screenshot of the CloudFront legacy console](CDN%20legacy%20console.png)
 
->> After the initial CloudFront configuration, I attempted to access the CloudFront domain name and encountered an error. The issue was that when a user requests the root URL (/) of the CloudFront distribution, CloudFront needs to know which object to serve as the default. #
+>> After the initial CloudFront configuration, I attempted to access the CloudFront domain name and encountered an error. The issue was that when a user requests the root URL (/) of the CloudFront distribution, CloudFront needs to know which object to serve as the default. 
 * **Cause of CloudFront Error (Initial):** When accessing the root URL of the CloudFront distribution (e.g., https://d24vu2jciv84ft.cloudfront.net/), CloudFront did not know which specific object to serve by default.
   ![Screenshot showing the CloudFront error](cdn-error.png)
 * **Solution:** Configured the Default root object in the CloudFront distribution settings.
