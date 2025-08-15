@@ -60,7 +60,7 @@
 
 **Final S3 Configuration Endpoint (HTTP):** [(http://csa-static-resume.s3-website-us-east-1.amazonaws.com/)](http://csa-static-resume.s3-website-us-east-1.amazonaws.com/)
 
-[Screenshot of the final S3 URL](final-s3-url.png)
+![Screenshot of the final S3 URL](final-s3-url.png)
 
 ---
 
