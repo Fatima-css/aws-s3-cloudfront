@@ -58,7 +58,7 @@
 * **AWS Best Practices:** Utilized bucket policies, which are the recommended method for granting public access to S3 buckets, over the older Access Control Lists (ACLs).
 * **Adaptability:** Effectively resolved access issues by understanding and applying AWS's modern security framework for S3.
 
-**Final S3 Configuration Endpoint (HTTP):** (http://csa-static-resume.s3-website-us-east-1.amazonaws.com/)
+**Final S3 Configuration Endpoint (HTTP):** [(http://csa-static-resume.s3-website-us-east-1.amazonaws.com/)](http://csa-static-resume.s3-website-us-east-1.amazonaws.com/)
 
 [Screenshot of the final S3 URL](final-s3-url.png)
 
