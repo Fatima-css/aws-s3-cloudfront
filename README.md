@@ -88,3 +88,9 @@ To improve global accessibility, enable HTTPS, and leverage caching, Amazon Clou
 
 **Final Access URL (HTTPS via CloudFront):** https://d24vu2jciv84ft.cloudfront.net/
 ![Screenshot of the final S3 and CDN URLs](Final%20S3-CDN.png)
+
+### Project Architecture Diagram
+
+This diagram shows how the AWS services are connected to host the resume website, from the user's request all the way to the S3 bucket.
+
+![Project Architecture Diagram](Final Diagram.png)
