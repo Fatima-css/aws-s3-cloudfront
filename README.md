@@ -93,4 +93,4 @@ To improve global accessibility, enable HTTPS, and leverage caching, Amazon Clou
 
 This diagram shows how the AWS services are connected to host the resume website, from the user's request all the way to the S3 bucket.
 
-![Project Architecture Diagram](Final Diagram.png)
+![Project Architecture Diagram](Diagram.png)
