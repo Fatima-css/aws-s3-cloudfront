@@ -1,4 +1,4 @@
-# Deploying a Static Resume Website on AWS with S3 and CloudFront CDN: A Troubleshooting Project
+# Deploying a Static Resume Website on AWS with S3 and CloudFront: A Troubleshooting Project
 
 **Objective:** Host a resume using Amazon S3 with appropriate public permissions. Subsequently, integrate Amazon CloudFront to enable SSL (HTTPS) and leverage its global Content Delivery Network (CDN) caching for low-latency access.
 
@@ -9,7 +9,7 @@
 * **403 Access Denied:** Resolved by implementing a bucket policy that grants public read access to the S3 bucket contents.
 * **CloudFront Root Object Misconfiguration:** Corrected by setting default root object to `csa-resume.pdf`
 
-**Outcome:** The resume is now accessible globally via a secure HTTPS provided by CloudFront, benefiting from CDN caching for improved performance.
+**Outcome:** The resume is now accessible globally via HTTPS with automatic encryption and edge caching.
 
 ---
 
@@ -70,9 +70,9 @@ Integrated CloudFront with the S3-hosted PDF resume to enable HTTPS and leverage
 
 **Configuration Process**: 
 (During CloudFront distribution creation, I used the legacy console settings to demonstrate the HTTP to HTTPS redirect and default behavior in the new console if needed)
-* **Origin Domain:** S3 website endpoint: (`csa-static-resume.s3-website-us-east-1.amazonaws.com`)
+* **Origin Domain:** csa-static-resume.s3-website-us-east-1.amazonaws.com
 * **Viewer Protocol Policy:** "Redirect HTTP to HTTPS" to ensure that any requests coming in over an unsecure HTTP connection are automatically redirected to a secure HTTPS connection.
-* **SSL Certificate:** Utilized the default "AWS Certificate Manager (ACM) certificate" which provides free, automatically managed SSL certificates for CloudFront distributions. Which CloudFront provides by default for its .cloudfront.net domain.
+* **SSL Certificate:** Utilized the default automatically managed SSL certificates for CloudFront distributions. Which CloudFront provides by default for its .cloudfront.net domain.
 ![Screenshot of the CloudFront legacy console](CDN%20legacy%20console.png)
 
 >> After the initial CloudFront configuration, I attempted to access the CloudFront domain name and encountered an error. The issue was that when a user requests the root URL (`/`), CloudFront needs to know which object to serve as the default. 
@@ -88,7 +88,7 @@ Integrated CloudFront with the S3-hosted PDF resume to enable HTTPS and leverage
 * SSL (AWS-managed): Leveraged AWS CloudFront domain's default SSL certificate management.
 
 
-**Final Access URL (HTTPS via CloudFront):** https://d24vu2jciv84ft.cloudfront.net/
+**Final Access URL:** https://d24vu2jciv84ft.cloudfront.net/
 ![Screenshot of the final S3 and CDN URLs](Final%20S3-CDN.png)
 
 ### Project Architecture Diagram
