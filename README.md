@@ -2,14 +2,14 @@
 
 **Objective:** Host a resume using Amazon S3 with appropriate public permissions. Subsequently, integrate Amazon CloudFront to enable SSL (HTTPS) and leverage its global Content Delivery Network (CDN) caching for low-latency access.
 
-**Services Used:** Amazon S3, AWS IAM (for underlying permissions), Amazon CloudFront
+**Services Used:** Amazon S3, Amazon CloudFront
 
 **Errors Resolved:**
 * **404 Not Found:** Resolved by enabling static website hosting on the S3 bucket and explicitly setting csa-resume.pdf as the index document.
 * **403 Access Denied:** Resolved by implementing a bucket policy that grants public read access to the S3 bucket contents.
-* **CloudFront Error (Origin Not Accessible/Incorrect Root Object):** Resolved by setting the default root object in the CloudFront distribution to csa-resume.pdf.
+* **CloudFront Root Object Misconfiguration:** Corrected by setting default root object to `csa-resume.pdf`
 
-**Outcome:** The resume is now accessible globally via a secure HTTPS URL provided by CloudFront, benefiting from CDN caching for improved performance.
+**Outcome:** The resume is now accessible globally via a secure HTTPS provided by CloudFront, benefiting from CDN caching for improved performance.
 
 ---
 
@@ -66,25 +66,27 @@
 
 ### 3. Amazon CloudFront CDN Configuration for Enhanced Access
 
-To improve global accessibility, enable HTTPS, and leverage caching, Amazon CloudFront was configured as a CDN for the S3 hosted resume.
+Integrated CloudFront with the S3-hosted PDF resume to enable HTTPS and leverage AWS's global infrastructure for improved performance.
 
-**CDN and HTTPS:** During CloudFront distribution creation (I opened the legacy console settings to demonstrate the HTTP to HTTPS redirect and default behavior in the new console if needed), the following key configurations were applied:
-* **Origin Domain:** Set to the S3 website endpoint: csa-static-resume.s3-website-us-east-1.amazonaws.com.
-* **Viewer Protocol Policy:** Configured to "Redirect HTTP to HTTPS" to ensure that any requests coming in over an unsecure HTTP connection are automatically redirected to a secure HTTPS connection.
-* **SSL Certificate:** Utilized the default "AWS Certificate Manager (ACM) certificate" option, which provides free, automatically managed SSL certificates for CloudFront distributions. Which CloudFront provides by default for its .cloudfront.net domain.
+**Configuration Process**: 
+(During CloudFront distribution creation, I used the legacy console settings to demonstrate the HTTP to HTTPS redirect and default behavior in the new console if needed)
+* **Origin Domain:** S3 website endpoint: (`csa-static-resume.s3-website-us-east-1.amazonaws.com`)
+* **Viewer Protocol Policy:** "Redirect HTTP to HTTPS" to ensure that any requests coming in over an unsecure HTTP connection are automatically redirected to a secure HTTPS connection.
+* **SSL Certificate:** Utilized the default "AWS Certificate Manager (ACM) certificate" which provides free, automatically managed SSL certificates for CloudFront distributions. Which CloudFront provides by default for its .cloudfront.net domain.
 ![Screenshot of the CloudFront legacy console](CDN%20legacy%20console.png)
 
->> After the initial CloudFront configuration, I attempted to access the CloudFront domain name and encountered an error. The issue was that when a user requests the root URL (/) of the CloudFront distribution, CloudFront needs to know which object to serve as the default. 
-* **Cause of CloudFront Error (Initial):** When accessing the root URL of the CloudFront distribution (e.g., https://d24vu2jciv84ft.cloudfront.net/), CloudFront did not know which specific object to serve by default.
+>> After the initial CloudFront configuration, I attempted to access the CloudFront domain name and encountered an error. The issue was that when a user requests the root URL (`/`), CloudFront needs to know which object to serve as the default. 
+* **Error:** When accessing the root URL of the CloudFront distribution (e.g., https://d24vu2jciv84ft.cloudfront.net/), CloudFront did not know which specific object to serve by default.
   ![Screenshot showing the CloudFront error](cdn-error.png)
-* **Solution:** Configured the Default root object in the CloudFront distribution settings.
-* **Implementation Path:** AWS CloudFront Console → Select the created distribution → General tab → Edit button. Set the Default root object field to csa-resume.pdf. This instructs CloudFront to serve this specific file when a user accesses the distribution's root URL.
+* **Cause:** Missing Default Root Object for `/` requests
+* **Fix:** Set the Default root object field to `csa-resume.pdf` This instructs CloudFront to serve this specific file when a user accesses the distribution's root URL.
 ![Screenshot of the CloudFront error fix](cdn-error%20fix.png)
 
 **With CloudFront:**
-* Added CloudFront CDN + Automatic HTTPS: Provides a global network for faster content delivery and secures connections with HTTPS.
-* Zero Configuration SSL (AWS-managed): Leveraged AWS Certificate Manager for easy and free SSL certificate management for the CloudFront domain.
-* Global Edge Caching: Content is now cached at CloudFront's edge locations worldwide, reducing latency for users accessing the resume from different geographic locations.
+* Global Access**: Accelerated delivery via CDN using AWS's 450+ edge locations. Content is now cached at CloudFront's edge locations worldwide, reducing latency for users accessing the resume from different geographic locations.
+* Automatic Security**: HTTPS encryption enabled
+* SSL (AWS-managed): Leveraged AWS CloudFront domain's default SSL certificate management.
+
 
 **Final Access URL (HTTPS via CloudFront):** https://d24vu2jciv84ft.cloudfront.net/
 ![Screenshot of the final S3 and CDN URLs](Final%20S3-CDN.png)
