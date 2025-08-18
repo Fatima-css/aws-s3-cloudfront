@@ -1,6 +1,8 @@
 # Deploying a Static Resume Website on AWS with S3 and CloudFront: A Troubleshooting Project
 
-**Objective:** Host a resume using Amazon S3 with appropriate public permissions. Subsequently, integrate Amazon CloudFront to enable SSL (HTTPS) and leverage its global Content Delivery Network (CDN) caching for low-latency access.
+**Objective:** Host a resume file using Amazon S3 with secure public access, then integrate CloudFront to enable HTTPS encryption and Content Delivery Network (CDN) caching for global delivery.
+
+Host a resume using Amazon S3 with appropriate public permissions. Subsequently, integrate Amazon CloudFront to enable SSL (HTTPS) and leverage its global Content Delivery Network (CDN) caching for low-latency access.
 
 **Services Used:** Amazon S3, Amazon CloudFront
 
@@ -38,7 +40,8 @@
 * **Error 2: 403 Access Denied (Security Error)**
     * **Root Cause:** By default, all S3 buckets and their objects are private, regardless of the "Block Public Access" settings. Even with public access blocked off, specific permissions are required to allow public read access to the bucket's contents for website hosting. My bucket lacked the necessary "permission slip" in the form of a bucket policy to allow public read operations.
     * **Solution:** Created and applied a bucket policy to the csa-static-resume bucket granting public read access.
-    * **Implementation Path:** AWS S3 Console → Select csa-static-resume bucket → Permissions tab → Bucket Policy section → Edit. Pasted the following JSON policy:
+    * **Implementation Path:**
+    * AWS S3 Console → Select csa-static-resume bucket → Permissions tab → Bucket Policy section → Edit. Pasted the following JSON policy:
     ``` json
     {
       "Version": "2012-10-17",
