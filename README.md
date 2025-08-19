@@ -71,7 +71,7 @@
 
 ### 3. Amazon CloudFront CDN Configuration
 
-Integrated CloudFront to add HTTPS security, improve global access, and enable caching.++
+Integrated CloudFront to add HTTPS security, improve global access, and enable edge caching.
 
 **Configuration Process**: 
 (I used the legacy console settings to demonstrate the HTTP to HTTPS redirect and default behavior in the new console if needed)
