@@ -91,7 +91,7 @@ Integrated CloudFront to add HTTPS security, improve global access, and enable c
 
 **With CloudFront:**
 * **Low-Latency Global Delivery:*** 
-  Enabled Content Delivery Network (CDN) caching at AWS's 450+ global edge locations.This accelerates content delivery by serving cached copies geographically closer to users, significantly reducing latency worldwide. 
+  Enabled Content Delivery Network (CDN) caching at AWS's 450+ global edge locations. This accelerates content delivery by serving cached copies geographically closer to users, significantly reducing latency worldwide. 
 * **Automatic HTTPS Security:**  
    Encryption enabled via CloudFront-managed SSL certificates (zero configuration)
 
@@ -101,6 +101,6 @@ Integrated CloudFront to add HTTPS security, improve global access, and enable c
 
 ### Project Architecture Diagram
 
-I created this diagram to show how the AWS services are connected to host the resume website, from the user's request through CloudFront to S3 origin. 
+I created this diagram to illustrate the request workflow, from the user through CloudFront to the S3 origin, and to show the configuration fixes applied along the way.
 
 ![Project Architecture Diagram](Diagram.png)
