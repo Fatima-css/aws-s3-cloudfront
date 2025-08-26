@@ -97,7 +97,7 @@ Integrated CloudFront to add HTTPS security, improve global access, and enable e
 
 
 **Final URL:** https://d24vu2jciv84ft.cloudfront.net/
-![CloudFront HTTPS Access](Final%20S3-CDN.png)
+![CloudFront HTTPS Access](Final-CDN.png)
 
 ### Project Architecture Diagram
 
