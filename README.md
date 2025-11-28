@@ -28,6 +28,7 @@
 * **Error 1: 404 Not Found (Configuration Error)**
     * **Root Cause:** Static website hosting was not enabled for the S3 bucket.
     * **Solution:** Enabled static website hosting for the csa-static-resume bucket.
+      - **Production Note:** For enhanced security, Origin Access Control (OAC) would restrict access to CloudFront only, eliminating public bucket exposure.
     * **Implementation Path:**
       * AWS S3 Console → Select csa-static-resume bucket → Properties tab → Static website hosting section → Enabled hosting.
       * Set the Index document to csa-resume.pdf. (Note: The index document name must precisely match the uploaded filename.)
@@ -64,7 +65,6 @@
 * **Security:** Implemented minimal required permissions 
 
 **S3 HTTP Endpoint:** 'http://csa-static-resume.s3-website-us-east-1.amazonaws.com/'
-
 ![S3 HTTP Access](final-s3-url.png)
 
 ---
@@ -99,8 +99,23 @@ Integrated CloudFront to add HTTPS security, improve global access, and enable e
 **Final URL:** https://d24vu2jciv84ft.cloudfront.net/
 ![CloudFront HTTPS Access](final-CDN.png)
 
+### 4. Security Enhancement Analysis
+
+While the bucket policy solution successfully resolved the initial 403 error, I recognized an important security consideration for production environments:
+
+**Origin Access Control (OAC) Implementation:**
+- **Current Approach:** S3 bucket policy with `"Principal": "*"` allows public internet access to the bucket
+- **Production Recommendation:** Use Origin Access Control (OAC) to:
+  - Make the S3 bucket completely private (remove public bucket policy)
+  - Grant access ONLY to the specific CloudFront distribution
+  - Eliminate public internet exposure while maintaining functionality
+  - Follow the principle of least privilege more strictly
+
+This demonstrates the evolution from a functional learning solution to a production-ready, security-conscious architecture.
+
 ### Project Architecture Diagram
 
 I created this diagram to illustrate the request workflow, from the user through CloudFront to the S3 origin, and to show the configuration fixes applied along the way.
 
 ![Project Architecture Diagram](Diagram.png)
+
