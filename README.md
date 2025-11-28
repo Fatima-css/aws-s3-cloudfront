@@ -17,7 +17,7 @@
 
 * Created an S3 bucket named: csa-static-resume in the us-east-1 region.
 * Uploaded the resume object file: csa-resume.pdf.
-* Disabled the default "Block Public Access" settings. Which is enabled by default as a security measure, would have prevented the bucket from ever becoming public.
+* Disabled the default "Block Public Access" settings. Which is enabled by default as a security measure, and would have prevented the bucket from ever becoming public.
 
 ### 2. S3 Errors Encountered and Resolved
 
